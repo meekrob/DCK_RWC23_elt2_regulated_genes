@@ -313,7 +313,7 @@ BoeckRNA_ELT2_chip
 
 ```{r BoeckRNA_ELT2_chip}
 library(fpc) # for bootstrapping
-library(vcd) # for mosaic
+library(corrplot)
 
 gene_names <-
   c("flh-3", "elt-7", "clec-258", "pqm-1", "mtl-2", "ets-4", "aat-6")
@@ -370,13 +370,9 @@ Heatmap(data.whole,
                                labels = chip_GOI_df$name))
 hclusters = cutree(hc, nclust)
 tab=table(hclusters, chip_rna_df$cluster.description[real&changing])
-dimnames(tab) <- list("hclusters"=1:nclust, 
-                      "ELT-2"=levels(chip_rna_df$cluster.description[real&changing]))
-mosaic(t(tab),shade=T,
-       just_labels="right",
-       rot_labels=c(0,0,0,0),
-       offset_label=c(0,0,0,-.5),
-       main  ="Time Resolved RNA associates with some \nELT-2 peak clusters")
+
+ch = chisq.test(t(tab))
+corrplot(ch$residuals,is.corr = F, title=sprintf("Time Resolved RNA associates with some \nELT-2 peak clusters (p=%.2e)", ch$p.value))
 
 ```
 
