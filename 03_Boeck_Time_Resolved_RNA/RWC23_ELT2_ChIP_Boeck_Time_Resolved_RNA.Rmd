@@ -374,6 +374,8 @@ tab=table(hclusters, chip_rna_df$cluster.description[real&changing])
 ch = chisq.test(t(tab))
 corrplot(ch$residuals,is.corr = F, title=sprintf("Time Resolved RNA associates with some \nELT-2 peak clusters (p=%.2e)", ch$p.value))
 
+corrplot(ch$residuals,is.corr = F, title=sprintf("Time Resolved RNA associates with some \nELT-2 peak clusters (p=%.2e)", ch$p.value))
+
 ```
 
 ```{r zoom-ins}
