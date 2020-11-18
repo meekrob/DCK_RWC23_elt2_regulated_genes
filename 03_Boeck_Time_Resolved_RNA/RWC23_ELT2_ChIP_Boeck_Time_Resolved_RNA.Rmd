@@ -378,6 +378,8 @@ mosaic(t(tab),shade=T,
        offset_label=c(0,0,0,-.5),
        main  ="Time Resolved RNA associates with some \nELT-2 peak clusters")
 
+corrplot(ch$residuals,is.corr = F, title=sprintf("Time Resolved RNA associates with some \nELT-2 peak clusters (p=%.2e)", ch$p.value))
+
 ```
 
 ```{r zoom-ins}
